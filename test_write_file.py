@@ -1,0 +1,14 @@
+from functions.write_files import write_file
+
+def test():
+    print("Result:")
+    print(write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum"))
+
+    print("Result:")
+    print(write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet"))
+
+    print("Result:")
+    print(write_file("calculator", "/tmp/temp.txt", "this should not be allowed"))
+
+if __name__ == "__main__":
+    test()
