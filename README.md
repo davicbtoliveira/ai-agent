@@ -21,13 +21,7 @@ Or follow the [official installation guide](https://github.com/astral-sh/uv#inst
 
 ### Install Dependencies
 
-Use `uv` to install project dependencies:
-
-```bash
-uv pip install -r requirements.txt
-```
-
-Or, if you have a `pyproject.toml` configuration:
+Use `uv` to sync project dependencies:
 
 ```bash
 uv sync
@@ -55,12 +49,9 @@ GEMINI_API_KEY=your_api_key_here
 
 Using Python's `python-dotenv` package:
 
-```python
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-gemini_api_key = os.getenv('GEMINI_API_KEY')
+```bash
+uv venv
+source .venv/bin/activate
 ```
 
 ### Obtaining Your Gemini API Key
@@ -76,40 +67,16 @@ gemini_api_key = os.getenv('GEMINI_API_KEY')
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-⚠️ **Important**: Never commit the `.env` file to version control. Add it to `.gitignore`:
-
-```
-# .gitignore
-.env
-.env.local
-```
-
 ## Running the Project
 
 Once dependencies are installed and environment variables are configured, you can run the project:
 
 ```bash
-python main.py
+uv run main.py "prompt here"
 ```
-
-## Development
-
-### Adding New Dependencies
-
-Use `uv` to add new packages:
-
-```bash
-uv pip install package_name
-```
-
-Then update your `requirements.txt` or `pyproject.toml` file accordingly.
 
 ## Troubleshooting
 
 - **`uv` command not found**: Make sure `uv` is installed and added to your PATH
 - **API Key errors**: Verify your `GEMINI_API_KEY` is correctly set in the `.env` file
-- **Missing dependencies**: Run `uv sync` or `uv pip install -r requirements.txt` again
-
-## License
-
-This project is licensed under the MIT License.
+- **Missing dependencies**: Run `uv sync` again
