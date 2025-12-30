@@ -5,8 +5,10 @@ from functions.run_python_file import schema_run_python_file, run_python_file
 from functions.write_files import schema_write_file, write_file
 
 available_functions = types.Tool(
-    function_declarations=[schema_get_files_info, schema_write_file, schema_get_file_content, schema_run_python_file],
+    function_declarations=[schema_get_files_info, schema_write_file,
+                           schema_get_file_content, schema_run_python_file],
 )
+
 
 def call_function(function_call, verbose=False):
     if verbose == True:
@@ -25,11 +27,11 @@ def call_function(function_call, verbose=False):
 
     if function_name not in function_map:
         return types.Content(
-        role="tool",
-        parts=[
-            types.Part.from_function_response(
-                name=function_name,
-                response={"error": f"Unknown function: {function_name}"},
+            role="tool",
+            parts=[
+                types.Part.from_function_response(
+                    name=function_name,
+                    response={"error": f"Unknown function: {function_name}"},
                 )
             ],
         )
@@ -41,11 +43,11 @@ def call_function(function_call, verbose=False):
     function_result = function_map[function_call.name](**args)
 
     return types.Content(
-    role="tool",
-    parts=[
-        types.Part.from_function_response(
-            name=function_name,
-            response={"result": function_result},
+        role="tool",
+        parts=[
+            types.Part.from_function_response(
+                name=function_name,
+                response={"result": function_result},
             )
         ],
     )
